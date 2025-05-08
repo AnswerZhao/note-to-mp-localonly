@@ -1,0 +1,30 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Code Structure
+
+The NoteToMP plugin codebase is organized as follows:
+
+## Core Files
+- [main.ts](mdc:src/main.ts) - Entry point that registers the plugin, view, and commands
+- [note-preview.ts](mdc:src/note-preview.ts) - Core implementation of the preview functionality
+- [settings.ts](mdc:src/settings.ts) - Settings model and management
+- [setting-tab.ts](mdc:src/setting-tab.ts) - UI for the settings tab
+
+## Assets Management
+- [assets.ts](mdc:src/assets.ts) - Manages theme and highlight assets
+- [default-theme.ts](mdc:src/default-theme.ts) - Default theme definition
+- [default-highlight.ts](mdc:src/default-highlight.ts) - Default code highlighting
+
+## Utilities
+- [utils.ts](mdc:src/utils.ts) - General utility functions
+- [inline-css.ts](mdc:src/inline-css.ts) - Handling CSS inlining
+- [imagelib.ts](mdc:src/imagelib.ts) - Image processing utilities
+- [weixin-api.ts](mdc:src/weixin-api.ts) - Integration with WeChat (Weixin) API
+
+## Configuration
+- [manifest.json](mdc:manifest.json) - Plugin manifest
+- [package.json](mdc:package.json) - Project dependencies
+- [esbuild.config.mjs](mdc:esbuild.config.mjs) - Build configuration

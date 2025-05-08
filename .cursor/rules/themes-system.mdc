@@ -1,0 +1,28 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Themes and Styling System
+
+The NoteToMP plugin has a sophisticated theming system to ensure content renders properly in WeChat:
+
+## Theme Management
+- [assets.ts](mdc:src/assets.ts) handles loading and managing themes
+- Themes are stored in the `assets/themes/` directory
+- Default theme defined in [default-theme.ts](mdc:src/default-theme.ts)
+
+## Code Highlighting
+- Code syntax highlighting themes in `assets/highlights/`
+- Default highlight style in [default-highlight.ts](mdc:src/default-highlight.ts)
+- Uses highlight.js for syntax highlighting
+
+## CSS Processing
+- [inline-css.ts](mdc:src/inline-css.ts) handles inlining CSS for WeChat compatibility
+- Transforms external CSS into inline styles for content export
+- CSS is processed and embedded directly in HTML elements
+
+## Custom Styles
+- Users can create custom CSS in a `custom.css` file
+- Plugin UI defined in [styles.css](mdc:styles.css)
+- Custom styles can be enabled/disabled in settings

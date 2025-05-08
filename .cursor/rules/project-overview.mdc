@@ -1,0 +1,26 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Project Overview
+
+NoteToMP is an Obsidian plugin designed to optimize content transfer to WeChat Official Account (MP) editor. It syncs note styles from Obsidian to WeChat MP, preserving formatting and supporting features like code highlighting and line numbers.
+
+## Key Features
+- Export Obsidian notes to WeChat MP with preserved formatting
+- Support for code syntax highlighting with multiple themes
+- Handling of links (direct display or footnotes)
+- Multiple style themes (30+)
+- Image upload support
+- Draft creation functionality 
+- Mathematical formula support (LaTeX and AsciiMath)
+- Custom CSS support
+
+## Main Entry Points
+- [main.ts](mdc:src/main.ts) - Plugin initialization and setup
+- [note-preview.ts](mdc:src/note-preview.ts) - Preview rendering implementation
+- [setting-tab.ts](mdc:src/setting-tab.ts) - Plugin settings interface
+
+## Core Architecture
+The plugin creates a preview pane in Obsidian that renders content as it would appear in WeChat MP, then provides copy/export functionality to transfer this content.

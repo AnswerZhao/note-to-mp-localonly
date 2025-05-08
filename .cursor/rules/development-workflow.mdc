@@ -1,0 +1,32 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Development Workflow
+
+Information about building, developing, and deploying the NoteToMP plugin:
+
+## Build System
+- Uses [esbuild.config.mjs](mdc:esbuild.config.mjs) for builds
+- TypeScript compilation configured in [tsconfig.json](mdc:tsconfig.json)
+- ESLint configured in [.eslintrc](mdc:.eslintrc) for code quality
+
+## Development Scripts
+- `npm run dev` - Development build with watch mode
+- `npm run build` - Production build
+- `npm run download` - Downloads assets and themes
+- `npm run version` - Handles version bumping
+
+## Version Management
+- [version-bump.mjs](mdc:version-bump.mjs) handles plugin version updates
+- Updates relevant files: [manifest.json](mdc:manifest.json) and [versions.json](mdc:versions.json)
+- Version info stored in `manifest.json`
+
+## Dependencies
+- Plugin dependencies defined in [package.json](mdc:package.json)
+- Main dependencies:
+  - highlight.js - For code syntax highlighting
+  - marked - For markdown parsing
+  - html-to-image - For image generation
+  - @zip.js/zip.js - For asset handling

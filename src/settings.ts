@@ -166,3 +166,15 @@ export class NMPSettings {
         return this.expireat > new Date();
     }
 }
+
+// 移除公众号和封面相关的设置项
+// 例如：删除类似这样的代码块
+// new Setting(containerEl)
+//   .setName('公众号设置')
+//   .setDesc('设置公众号相关参数')
+//   .addText(text => text
+//     .setValue(this.plugin.settings.mpAccount)
+//     .onChange(async (value) => {
+//       this.plugin.settings.mpAccount = value;
+//       await this.plugin.saveSettings();
+//     }));

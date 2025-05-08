@@ -1,0 +1,28 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# WeChat Integration
+
+The NoteToMP plugin integrates with WeChat Official Accounts in several ways:
+
+## API Integration
+- [weixin-api.ts](mdc:src/weixin-api.ts) contains the WeChat API implementation
+- Handles authentication and communication with WeChat servers
+- Manages multi-account support
+
+## Content Export
+- Formats content to match WeChat's expected HTML structure
+- Transforms CSS to inline styles for compatibility
+- Special handling for code blocks, links, and images
+
+## Image Upload
+- Automatic upload of local images to WeChat servers
+- Image paths are replaced with WeChat URLs
+- Proper handling of Obsidian attachments
+
+## Draft Creation
+- Ability to send content directly to WeChat draft box
+- Upload and configuration of article cover images
+- Premium subscription feature for direct publishing workflow

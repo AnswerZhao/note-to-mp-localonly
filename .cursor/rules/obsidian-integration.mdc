@@ -1,0 +1,28 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# Obsidian Integration
+
+The NoteToMP plugin integrates with the Obsidian API in the following key ways:
+
+## Plugin Registration
+In [main.ts](mdc:src/main.ts), the plugin extends Obsidian's `Plugin` class and implements:
+- `onload()` - Registers views, commands, and ribbon icons
+- `onunload()` - Cleanup when plugin is disabled
+- Settings management with `loadSettings()` and `saveSettings()`
+
+## View Registration
+- Uses `registerView()` to create the preview pane
+- The preview is created as a custom view type (`VIEW_TYPE_NOTE_PREVIEW`)
+- [note-preview.ts](mdc:src/note-preview.ts) extends `ItemView` from Obsidian
+
+## Settings Tab
+- [setting-tab.ts](mdc:src/setting-tab.ts) extends `PluginSettingTab`
+- Creates UI for managing plugin settings
+
+## Editor Integration
+- Accesses the current editor content
+- Renders markdown using Obsidian's rendering engine
+- Post-processes the rendered HTML for WeChat compatibility

@@ -342,32 +342,32 @@ export class NotePreview extends ItemView implements MDRendererCallback {
         let lineDiv;
 
         // 公众号
-        if (this.settings.wxInfo.length > 1 || Platform.isDesktop) {
-            lineDiv = this.toolbar.createDiv({ cls: 'toolbar-line' });
-            lineDiv.createDiv({ cls: 'style-label' }).innerText = '公众号:';
-            const wxSelect = lineDiv.createEl('select', { cls: 'style-select' })
-            wxSelect.setAttr('style', 'width: 200px');
-            wxSelect.onchange = async () => {
-                this.currentAppId = wxSelect.value;
-                this.onAppIdChanged();
-            }
-            const defautlOp =wxSelect.createEl('option');
-            defautlOp.value = '';
-            defautlOp.text = '请在设置里配置公众号';
-            for (let i = 0; i < this.settings.wxInfo.length; i++) {
-                const op = wxSelect.createEl('option');
-                const wx = this.settings.wxInfo[i];
-                op.value = wx.appid;
-                op.text = wx.name;
-                if (i== 0) {
-                    op.selected = true
-                    this.currentAppId = wx.appid;
-                }
-            }
-        }
-        else if (this.settings.wxInfo.length > 0) {
-            this.currentAppId = this.settings.wxInfo[0].appid;
-        }
+        // if (this.settings.wxInfo.length > 1 || Platform.isDesktop) {
+        //     lineDiv = this.toolbar.createDiv({ cls: 'toolbar-line' });
+        //     lineDiv.createDiv({ cls: 'style-label' }).innerText = '公众号:';
+        //     const wxSelect = lineDiv.createEl('select', { cls: 'style-select' })
+        //     wxSelect.setAttr('style', 'width: 200px');
+        //     wxSelect.onchange = async () => {
+        //         this.currentAppId = wxSelect.value;
+        //         this.onAppIdChanged();
+        //     }
+        //     const defautlOp =wxSelect.createEl('option');
+        //     defautlOp.value = '';
+        //     defautlOp.text = '请在设置里配置公众号';
+        //     for (let i = 0; i < this.settings.wxInfo.length; i++) {
+        //         const op = wxSelect.createEl('option');
+        //         const wx = this.settings.wxInfo[i];
+        //         op.value = wx.appid;
+        //         op.text = wx.name;
+        //         if (i== 0) {
+        //             op.selected = true
+        //             this.currentAppId = wx.appid;
+        //         }
+        //     }
+        // }
+        // else if (this.settings.wxInfo.length > 0) {
+        //     this.currentAppId = this.settings.wxInfo[0].appid;
+        // }
 
         // 复制，刷新，带图片复制，发草稿箱
         lineDiv = this.toolbar.createDiv({ cls: 'toolbar-line' });
@@ -388,32 +388,32 @@ export class NotePreview extends ItemView implements MDRendererCallback {
             }
         }
 
-        const uploadImgBtn = lineDiv.createEl('button', { cls: 'copy-button' }, async (button) => {
-            button.setText('上传图片');
-        })
+        // const uploadImgBtn = lineDiv.createEl('button', { cls: 'copy-button' }, async (button) => {
+        //     button.setText('上传图片');
+        // })
 
-        uploadImgBtn.onclick = async() => {
-            await this.uploadImages();
-            uevent('upload');
-        }
+        // uploadImgBtn.onclick = async() => {
+        //     await this.uploadImages();
+        //     uevent('upload');
+        // }
 
-        const postBtn = lineDiv.createEl('button', { cls: 'copy-button' }, async (button) => {
-            button.setText('发草稿');
-        })
+        // const postBtn = lineDiv.createEl('button', { cls: 'copy-button' }, async (button) => {
+        //     button.setText('发草稿');
+        // })
 
-        postBtn.onclick = async() => {
-            await this.postArticle();
-            uevent('pub');
-        }
+        // postBtn.onclick = async() => {
+        //     await this.postArticle();
+        //     uevent('pub');
+        // }
 
-        const imagesBtn = lineDiv.createEl('button', { cls: 'copy-button' }, async (button) => {
-            button.setText('图片/文字');
-        })
+        // const imagesBtn = lineDiv.createEl('button', { cls: 'copy-button' }, async (button) => {
+        //     button.setText('图片/文字');
+        // })
 
-        imagesBtn.onclick = async() => {
-            await this.postImages();
-            uevent('pub-images');
-        }
+        // imagesBtn.onclick = async() => {
+        //     await this.postImages();
+        //     uevent('pub-images');
+        // }
 
         const refreshBtn = lineDiv.createEl('button', { cls: 'refresh-button' }, async (button) => {
             button.setText('刷新');
@@ -426,54 +426,54 @@ export class NotePreview extends ItemView implements MDRendererCallback {
         }
 
         // 封面
-        lineDiv = this.toolbar.createDiv({ cls: 'toolbar-line' }); 
+        // lineDiv = this.toolbar.createDiv({ cls: 'toolbar-line' }); 
 
-        const coverTitle = lineDiv.createDiv({ cls: 'style-label' });
-        coverTitle.innerText = '封面:';
+        // const coverTitle = lineDiv.createDiv({ cls: 'style-label' });
+        // coverTitle.innerText = '封面:';
 
-        this.useDefaultCover = lineDiv.createEl('input', { cls: 'input-style' });
-        this.useDefaultCover.setAttr('type', 'radio');
-        this.useDefaultCover.setAttr('name', 'cover');
-        this.useDefaultCover.setAttr('value', 'default');
-        this.useDefaultCover.setAttr('checked', true);
-        this.useDefaultCover.id = 'default-cover';
-        this.useDefaultCover.onchange = async () => {
-            if (this.useDefaultCover.checked) {
-                this.coverEl.setAttr('style', 'visibility:hidden;width:0px;');
-            }
-            else {
-                this.coverEl.setAttr('style', 'visibility:visible;width:180px;');
-            }
-        }
-        const defaultLable = lineDiv.createEl('label');
-        defaultLable.innerText = '默认';
-        defaultLable.setAttr('for', 'default-cover');
+        // this.useDefaultCover = lineDiv.createEl('input', { cls: 'input-style' });
+        // this.useDefaultCover.setAttr('type', 'radio');
+        // this.useDefaultCover.setAttr('name', 'cover');
+        // this.useDefaultCover.setAttr('value', 'default');
+        // this.useDefaultCover.setAttr('checked', true);
+        // this.useDefaultCover.id = 'default-cover';
+        // this.useDefaultCover.onchange = async () => {
+        //     if (this.useDefaultCover.checked) {
+        //         this.coverEl.setAttr('style', 'visibility:hidden;width:0px;');
+        //     }
+        //     else {
+        //         this.coverEl.setAttr('style', 'visibility:visible;width:180px;');
+        //     }
+        // }
+        // const defaultLable = lineDiv.createEl('label');
+        // defaultLable.innerText = '默认';
+        // defaultLable.setAttr('for', 'default-cover');
 
-        this.useLocalCover = lineDiv.createEl('input', { cls: 'input-style' });
-        this.useLocalCover.setAttr('type', 'radio');
-        this.useLocalCover.setAttr('name', 'cover');
-        this.useLocalCover.setAttr('value', 'local');
-        this.useLocalCover.id = 'local-cover';
-        this.useLocalCover.setAttr('style', 'margin-left:20px;');
-        this.useLocalCover.onchange = async () => {
-            if (this.useLocalCover.checked) {
-                this.coverEl.setAttr('style', 'visibility:visible;width:180px;');
-            }
-            else {
-                this.coverEl.setAttr('style', 'visibility:hidden;width:0px;');
-            }
-        }
+        // this.useLocalCover = lineDiv.createEl('input', { cls: 'input-style' });
+        // this.useLocalCover.setAttr('type', 'radio');
+        // this.useLocalCover.setAttr('name', 'cover');
+        // this.useLocalCover.setAttr('value', 'local');
+        // this.useLocalCover.id = 'local-cover';
+        // this.useLocalCover.setAttr('style', 'margin-left:20px;');
+        // this.useLocalCover.onchange = async () => {
+        //     if (this.useLocalCover.checked) {
+        //         this.coverEl.setAttr('style', 'visibility:visible;width:180px;');
+        //     }
+        //     else {
+        //         this.coverEl.setAttr('style', 'visibility:hidden;width:0px;');
+        //     }
+        // }
 
-        const localLabel = lineDiv.createEl('label');
-        localLabel.setAttr('for', 'local-cover');
-        localLabel.innerText = '上传';
+        // const localLabel = lineDiv.createEl('label');
+        // localLabel.setAttr('for', 'local-cover');
+        // localLabel.innerText = '上传';
 
-        this.coverEl = lineDiv.createEl('input', { cls: 'upload-input' });
-        this.coverEl.setAttr('type', 'file');
-        this.coverEl.setAttr('placeholder', '封面图片');
-        this.coverEl.setAttr('accept', '.png, .jpg, .jpeg');
-        this.coverEl.setAttr('name', 'cover');
-        this.coverEl.id = 'cover-input';
+        // this.coverEl = lineDiv.createEl('input', { cls: 'upload-input' });
+        // this.coverEl.setAttr('type', 'file');
+        // this.coverEl.setAttr('placeholder', '封面图片');
+        // this.coverEl.setAttr('accept', '.png, .jpg, .jpeg');
+        // this.coverEl.setAttr('name', 'cover');
+        // this.coverEl.id = 'cover-input';
 
         // 样式
         if (this.settings.showStyleUI) {
@@ -696,9 +696,35 @@ export class NotePreview extends ItemView implements MDRendererCallback {
 
     async copyArticle() {
         const content = this.getArticleContent();
-        await navigator.clipboard.write([new ClipboardItem({
-            'text/html': new Blob([content], {type: 'text/html'})
-        })])
+        let finalContent = content;
+        
+        // 处理图片
+        const images = this.articleDiv.querySelectorAll('img');
+        for (const img of images) {
+            if (img.src.startsWith('data:')) continue; // 跳过已经是 base64 的图片
+            
+            try {
+                const response = await fetch(img.src);
+                const blob = await response.blob();
+                const reader = new FileReader();
+                const base64 = await new Promise<string>((resolve) => {
+                    reader.onloadend = () => resolve(reader.result as string);
+                    reader.readAsDataURL(blob);
+                });
+                
+                // 替换原始图片链接为 base64
+                finalContent = finalContent.replace(img.src, base64);
+            } catch (error) {
+                console.error('Failed to convert image:', error);
+            }
+        }
+        
+        // 写入剪贴板
+        const items = {
+            'text/html': new Blob([finalContent], {type: 'text/html'})
+        };
+        
+        await navigator.clipboard.write([new ClipboardItem(items)]);
     }
 
     getSecret() {

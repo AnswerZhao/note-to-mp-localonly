@@ -163,10 +163,10 @@ export class NoteToMpSettingTab extends PluginSettingTab {
 
 		this.wxInfo = this.parseWXInfo();
 
-		const helpEl = containerEl.createEl('div');
-		helpEl.style.cssText = 'display: flex;flex-direction: row;align-items: center;';
-		helpEl.createEl('h2', {text: '帮助文档'}).style.cssText = 'margin-right: 10px;';
-		helpEl.createEl('a', {text: 'https://sunboshi.tech/doc', attr: {href: 'https://sunboshi.tech/doc'}});
+		// const helpEl = containerEl.createEl('div');
+		// helpEl.style.cssText = 'display: flex;flex-direction: row;align-items: center;';
+		// helpEl.createEl('h2', {text: '帮助文档'}).style.cssText = 'margin-right: 10px;';
+		// helpEl.createEl('a', {text: 'https://sunboshi.tech/doc', attr: {href: 'https://sunboshi.tech/doc'}});
 
 		containerEl.createEl('h2', {text: '插件设置'});
 
@@ -342,75 +342,75 @@ export class NoteToMpSettingTab extends PluginSettingTab {
 				});
 			});
 		
-		let descHtml = '详情说明：<a href="https://sunboshi.tech/subscribe">https://sunboshi.tech/subscribe</a>';
-		if (this.settings.expireat) {
-			const timestr = this.settings.expireat.toLocaleString();
-			descHtml = `有效期至：${timestr} <br/>${descHtml}`
-		}
-		new Setting(containerEl)
-			.setName('注册码（AuthKey）')
-			.setDesc(sanitizeHTMLToDom(descHtml))
-			.addText(text => {
-			    text.setPlaceholder('请输入注册码')
-					.setValue(this.settings.authKey)
-					.onChange(async (value) => {
-					    this.settings.authKey = value.trim();
-						this.settings.getExpiredDate();
-						await this.plugin.saveSettings();
-					})
-					.inputEl.setAttr('style', 'width: 320px;')
-			}).descEl.setAttr('style', '-webkit-user-select: text; user-select: text;')
+		// let descHtml = '详情说明：<a href="https://sunboshi.tech/subscribe">https://sunboshi.tech/subscribe</a>';
+		// if (this.settings.expireat) {
+		// 	const timestr = this.settings.expireat.toLocaleString();
+		// 	descHtml = `有效期至：${timestr} <br/>${descHtml}`
+		// }
+		// new Setting(containerEl)
+		// 	.setName('注册码（AuthKey）')
+		// 	.setDesc(sanitizeHTMLToDom(descHtml))
+		// 	.addText(text => {
+		// 	    text.setPlaceholder('请输入注册码')
+		// 			.setValue(this.settings.authKey)
+		// 			.onChange(async (value) => {
+		// 			    this.settings.authKey = value.trim();
+		// 				this.settings.getExpiredDate();
+		// 				await this.plugin.saveSettings();
+		// 			})
+		// 			.inputEl.setAttr('style', 'width: 320px;')
+		// 	}).descEl.setAttr('style', '-webkit-user-select: text; user-select: text;')
 				
 		
-		let isClear = this.settings.wxInfo.length > 0;
-		let isRealClear = false;
-		const buttonText = isClear ? '清空公众号信息' : '加密公众号信息';
-		new Setting(containerEl)
-			.setName('公众号信息')
-			.addTextArea(text => {
-				this.wxTextArea = text;
-			    text.setPlaceholder('请输入公众号信息\n格式：公众号名称|公众号AppID|公众号AppSecret\n多个公众号请换行输入\n输入完成后点击加密按钮')
-				    .setValue(this.wxInfo)
-					.onChange(value => {
-					    this.wxInfo = value;
-					})
-				    .inputEl.setAttr('style', 'width: 520px; height: 120px;');
-			})
+		// let isClear = this.settings.wxInfo.length > 0;
+		// let isRealClear = false;
+		// const buttonText = isClear ? '清空公众号信息' : '加密公众号信息';
+		// new Setting(containerEl)
+		// 	.setName('公众号信息')
+		// 	.addTextArea(text => {
+		// 		this.wxTextArea = text;
+		// 	    text.setPlaceholder('请输入公众号信息\n格式：公众号名称|公众号AppID|公众号AppSecret\n多个公众号请换行输入\n输入完成后点击加密按钮')
+		// 		    .setValue(this.wxInfo)
+		// 			.onChange(value => {
+		// 			    this.wxInfo = value;
+		// 			})
+		// 		    .inputEl.setAttr('style', 'width: 520px; height: 120px;');
+		// 	})
 		
-		new Setting(containerEl).addButton(button => {
-			button.setButtonText(buttonText);
-			button.onClick(async () => {
-				if (isClear) {
-					isRealClear = true;
-					isClear = false;
-					button.setButtonText('确认清空?');
-				}
-				else if (isRealClear) {
-					isRealClear = false;
-					isClear = false;
-					this.clear();
-					button.setButtonText('加密公众号信息');
-				}
-				else {
-					button.setButtonText('加密中...');
-					if (await this.encrypt()) {
-						isClear = true;
-						isRealClear = false;
-						button.setButtonText('清空公众号信息');
-					}
-					else {
-						button.setButtonText('加密公众号信息');
-					}
-				}
-			});
-		})
-		.addButton(button => {
-			button.setButtonText('测试公众号');
-			button.onClick(async () => {
-				button.setButtonText('测试中...');
-				await this.testWXInfo();
-				button.setButtonText('测试公众号');
-			})
-		})
+		// new Setting(containerEl).addButton(button => {
+		// 	button.setButtonText(buttonText);
+		// 	button.onClick(async () => {
+		// 		if (isClear) {
+		// 			isRealClear = true;
+		// 			isClear = false;
+		// 			button.setButtonText('确认清空?');
+		// 		}
+		// 		else if (isRealClear) {
+		// 			isRealClear = false;
+		// 			isClear = false;
+		// 			this.clear();
+		// 			button.setButtonText('加密公众号信息');
+		// 		}
+		// 		else {
+		// 			button.setButtonText('加密中...');
+		// 			if (await this.encrypt()) {
+		// 				isClear = true;
+		// 				isRealClear = false;
+		// 				button.setButtonText('清空公众号信息');
+		// 			}
+		// 			else {
+		// 				button.setButtonText('加密公众号信息');
+		// 			}
+		// 		}
+		// 	});
+		// })
+		// .addButton(button => {
+		// 	button.setButtonText('测试公众号');
+		// 	button.onClick(async () => {
+		// 		button.setButtonText('测试中...');
+		// 		await this.testWXInfo();
+		// 		button.setButtonText('测试公众号');
+		// 	})
+		// })
 	}
 }

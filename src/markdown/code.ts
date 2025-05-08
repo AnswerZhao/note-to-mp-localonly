@@ -108,6 +108,16 @@ export class CodeRenderer extends Extension {
 
 	codeRenderer(code: string, infostring: string | undefined): string {
 		const lang = (infostring || '').match(/^\S*/)?.[0];
+
+		// 添加这段处理缩进的代码
+		code = code.split('\n').map(line => {
+			// 匹配行首的空格和制表符
+			return line.replace(/^(\s+)/, function(match) {
+				// 将空格转换为&nbsp;, 制表符转换为4个&nbsp;
+				return match.replace(/ /g, '&nbsp;').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+			});
+		}).join('\n');
+
 		code = code.replace(/\n$/, '') + '\n';
 
 		let codeSection = '';
@@ -128,13 +138,14 @@ export class CodeRenderer extends Extension {
 			codeSection = '<section class="code-section">';
 		}
 
+		// 只对pre和code添加内联样式以确保横向滚动，不修改整体结构
 		if (!lang) {
-			return codeSection + '<pre><code>'
+			return codeSection + '<pre style="overflow-x: auto; white-space: pre;"><code>'
 				+ code
 				+ '</code></pre></section>\n';
 		}
-
-		return codeSection + '<pre><code class="hljs language-'
+	
+		return codeSection + '<pre style="overflow-x: auto; white-space: pre;"><code class="hljs language-'
 			+ lang
 			+ '">'
 			+ code

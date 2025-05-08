@@ -1,0 +1,232 @@
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1em;
+  line-height: 1.5;
+  position: relative;
+  white-space: pre !important;
+  word-wrap: normal !important;
+}
+
+code.hljs {
+  padding: 3px 5px;
+  line-height: 1.5;
+}
+
+/* 
+ * MyTech代码高亮主题 - 参考Carbon.now.sh风格
+ * 专为科技文章设计的现代风格代码高亮
+ */
+.hljs {
+  background: #1a2233;
+  color: #e6e6e6;
+  font-family: "JetBrains Mono", "Fira Code", "Menlo", "Monaco", "Consolas", "Courier New", monospace;
+  border-radius: 5px;
+  font-size: 0.9em;
+  line-height: 1.5;
+  min-height: 100%;
+}
+
+/* Base color for comments and docstrings */
+.hljs-comment,
+.hljs-quote {
+  color: #7c8a9b;
+  font-style: italic;
+}
+
+/* Keywords, storage, selectors */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-subst,
+.hljs-tag .hljs-name,
+.hljs-tag,
+.hljs-name,
+.hljs-type {
+  color: #ea80fc; /* Bright purple for keywords */
+}
+
+/* Function names and classes */
+.hljs-function .hljs-title,
+.hljs-title.function_,
+.hljs-title.class_,
+.hljs-class .hljs-title,
+.hljs-title {
+  color: #61efff; /* Cyan for function and class names */
+}
+
+/* Strings */
+.hljs-string,
+.hljs-regexp,
+.hljs-meta .hljs-string,
+.hljs-doctag {
+  color: #7ae13f; /* Green for strings */
+}
+
+/* Numbers, boolean, null */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+  color: #ff9e64; /* Orange for numbers and built-ins */
+}
+
+/* Variable names */
+.hljs-variable,
+.hljs-template-variable {
+  color: #4ff2f8; /* Light cyan for variables */
+}
+
+/* Attribute names in markup */
+.hljs-attribute,
+.hljs-attr {
+  color: #ff80ab; /* Pink for attributes */
+}
+
+/* CSS property names */
+.hljs-property {
+  color: #80cbc4; /* Light teal for properties */
+}
+
+/* XML/HTML entities */
+.hljs-symbol,
+.hljs-bullet {
+  color: #ffcc80; /* Light orange for symbols */
+}
+
+/* Tags (HTML, XML) */
+.hljs-section {
+  color: #64b5f6; /* Blue for section headers */
+}
+
+/* Text emphasis */
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* Code additions (in diffs) */
+.hljs-addition {
+  background-color: rgba(126, 211, 33, 0.2);
+  color: #7ed321;
+}
+
+/* Code deletions (in diffs) */
+.hljs-deletion {
+  background-color: rgba(248, 81, 73, 0.2);
+  color: #f85149;
+}
+
+/* Custom styles for different languages */
+/* CSS */
+.language-css .hljs-selector-class,
+.language-css .hljs-selector-id {
+  color: #ff80ab;
+}
+
+/* JavaScript specific */
+.language-javascript .hljs-keyword {
+  color: #c792ea;
+}
+
+/* TypeScript specific */
+.language-typescript .hljs-keyword {
+  color: #b39ddb;
+}
+
+/* JSON specific */
+.language-json .hljs-property {
+  color: #73d0ff;
+}
+
+/* Shell/bash specific */
+.language-bash .hljs-variable,
+.language-shell .hljs-variable {
+  color: #a9c77d;
+}
+
+/* Python specific */
+.language-python .hljs-decorator,
+.language-python .hljs-meta {
+  color: #ffd54f;
+}
+
+/* Line highlighting */
+.hljs-line-highlight {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Line numbers container */
+.hljs-ln-numbers {
+  user-select: none;
+  text-align: right;
+  color: #666;
+  border-right: 1px solid #333;
+  vertical-align: top;
+  padding-right: 8px !important;
+  padding-left: 8px !important;
+  line-height: 1.5;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+/* 增强样式以确保行号与代码行对应 */
+.hljs-ln {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.hljs-ln tr {
+  width: 100%;
+}
+
+.hljs-ln-line {
+  line-height: 1.5;
+  height: 1.5em;
+  white-space: pre;
+}
+
+/* 优化多行代码块显示 */
+.hljs-line {
+  display: block;
+  line-height: 1.5;
+  min-height: 1.5em;
+}
+
+/* 确保每一个代码行都有正确的行高 */
+.hljs span {
+  line-height: inherit;
+}
+
+/* 自定义行号样式 */
+.hljs-line-numbers {
+  counter-reset: line;
+  position: relative;
+}
+
+.hljs-line-numbers > span {
+  position: relative;
+  counter-increment: line;
+}
+
+.hljs-line-numbers > span::before {
+  content: counter(line);
+  position: absolute;
+  left: -3.5em;
+  width: 3em;
+  text-align: right;
+  color: #666;
+  opacity: 0.7;
+  white-space: nowrap;
+  padding-right: 0.5em;
+  user-select: none;
+  -webkit-user-select: none;
+} 
