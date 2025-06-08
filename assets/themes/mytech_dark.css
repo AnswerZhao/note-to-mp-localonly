@@ -1,0 +1,185 @@
+/* =========================================================== */
+/* MyTech 主题 - 最终修正版 (v-final)                          */
+/* =========================================================== */
+
+/* 主容器样式 - 深色背景和浅色文字 */
+.note-to-mp {
+    padding: 20px 20px;
+    user-select: text;
+    -webkit-user-select: text;
+    color: rgb(173, 186, 199); /* #adbac7 */
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, Noto Sans, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    line-height: 1.7;
+    background-color: rgb(34, 39, 46); /* #22272e */
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.note-to-mp:last-child {
+    margin-bottom: 0;
+}
+
+/* 标题样式 - 适应深色背景 */
+.note-to-mp h1, .note-to-mp h2, .note-to-mp h3, .note-to-mp h4, .note-to-mp h5, .note-to-mp h6 {
+    color: rgb(220, 189, 251); /* #dcbdfb */
+    border-bottom-color: rgb(49, 109, 202); /* #316dca */
+}
+
+.note-to-mp h1 {
+    font-weight: 700;
+    font-size: 2.2em;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    padding-bottom: 0.3em;
+}
+
+.note-to-mp h2 {
+    font-weight: 600;
+    font-size: 1.75em;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    padding-bottom: 0.3em;
+}
+
+/* 段落文字颜色 */
+.note-to-mp p {
+    line-height: 1.7;
+    margin: 1em 0;
+    color: rgb(173, 186, 199);
+}
+
+/* 链接颜色 */
+.note-to-mp a {
+    color: rgb(108, 182, 255); /* #6cb6ff */
+    text-decoration: none;
+    border-bottom: 1px solid rgba(108, 182, 255, 0.4);
+}
+
+.note-to-mp a:hover {
+    border-bottom-color: rgb(108, 182, 255);
+}
+
+/* 引用块样式 */
+.note-to-mp blockquote {
+    color: rgb(118, 131, 144); /* #768390 */
+    background-color: rgb(45, 51, 59); /* #2d333b */
+    border-left: 4px solid rgb(49, 109, 202); /* #316dca */
+    padding: 0.8em 1em;
+    margin: 1.5em 0;
+}
+
+/*
+=================================
+代码块样式 (Code Block Style)
+==================================
+*/
+
+/* 总容器：负责圆角、阴影和整体布局 */
+.note-to-mp .code-section {
+    background-color: rgb(1, 22, 39); /* #011627 */
+    border-radius: 8px;
+    margin: 1.5em 0;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 按钮栏容器 */
+.code-title-bar {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    padding-left: 15px;
+}
+
+/* 按钮的通用样式 */
+.code-title-bar span {
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+/* 三个按钮的具体颜色 */
+.code-button-red { background-color: rgb(255, 95, 86); }
+.code-button-yellow { background-color: rgb(255, 189, 46); }
+.code-button-green { background-color: rgb(39, 201, 63); }
+
+/* 代码主体内容的包裹器 */
+.code-content-wrapper {
+    display: flex;
+}
+
+/* 行号列表 */
+.line-numbers {
+    flex-shrink: 0;
+    counter-reset: line;
+    margin: 0;
+    padding: 1em 0.8em;
+    color: rgb(92, 99, 112); /* #5c6370 */
+    user-select: none;
+    text-align: right;
+    border-right: 1px solid rgb(26, 43, 60); /* #1a2b3c */
+}
+
+.line-numbers > li {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    line-height: 1.75em;
+    font-size: 0.875em;
+    list-style-type: none;
+    white-space: nowrap;
+}
+
+/* 代码区域滚动容器 <pre> */
+.code-content-wrapper pre {
+    margin: 0;
+    padding: 1em; /* 内边距在这里！ */
+    overflow: auto;
+    width: 100%;
+}
+
+/* 实际代码元素 <code> */
+.code-content-wrapper pre code {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    color: rgb(214, 222, 235); /* #d6deeb */
+    background-color: transparent !important;
+    font-size: 0.9em;
+    line-height: 1.75em;
+    padding: 0; /* 移除内边距 */
+    white-space: pre !important;
+    word-wrap: normal !important;
+    display: block;
+}
+
+/* 行内代码的样式，与代码块区分 */
+.note-to-mp p > code {
+    color: rgb(150, 208, 255); /* #96d0ff */
+    background-color: rgb(50, 56, 66); /* #323842 */
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    display: inline;
+}
+
+/* 其他元素适配 */
+.note-to-mp hr {
+    background-color: rgb(55, 62, 71); /* #373e47 */
+}
+
+.note-to-mp strong {
+    color: rgb(173, 186, 199); /* #adbac7 */
+}
+
+.note-to-mp table thead {
+    background-color: rgb(45, 51, 59); /* #2d333b */
+}
+
+.note-to-mp table th,
+.note-to-mp table td {
+    border: 1px solid rgb(55, 62, 71); /* #373e47 */
+}
+
+.note-to-mp table tbody tr:nth-child(even) {
+    background-color: rgb(41, 46, 54); /* #292e36 */
+}

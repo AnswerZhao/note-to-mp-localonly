@@ -13,6 +13,6 @@ cp main.js ${obsidian_note2mp}/main.js
 cp manifest.json ${obsidian_note2mp}/manifest.json
 cp styles.css ${obsidian_note2mp}/styles.css
 
-cp -r assets ${obsidian_note2mp}/assets
+cp -r assets ${obsidian_note2mp}
 
 echo "已经同步插件 NoteToMPLocal 配置到你的 Obsidian 仓库: ${obsidian_note2mp}"

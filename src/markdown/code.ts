@@ -106,50 +106,94 @@ export class CodeRenderer extends Extension {
 		}
 	}
 
+	// codeRenderer(code: string, infostring: string | undefined): string {
+	// 	const lang = (infostring || '').match(/^\S*/)?.[0];
+
+	// 	// 添加这段处理缩进的代码
+	// 	code = code.split('\n').map(line => {
+	// 		// 匹配行首的空格和制表符
+	// 		return line.replace(/^(\s+)/, function(match) {
+	// 			// 将空格转换为&nbsp;, 制表符转换为4个&nbsp;
+	// 			return match.replace(/ /g, '&nbsp;').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+	// 		});
+	// 	}).join('\n');
+
+	// 	code = code.replace(/\n$/, '') + '\n';
+
+	// 	let codeSection = '';
+	// 	if (this.settings.lineNumber) {
+	// 		const lines = code.split('\n');
+
+	// 		let liItems = '';
+	// 		let count = 1;
+	// 		while (count < lines.length) {
+	// 			liItems = liItems + `<li>${count}</li>`;
+	// 			count = count + 1;
+	// 		}
+	// 		codeSection = '<section class="code-section"><ul>'
+	// 			+ liItems
+	// 			+ '</ul>';
+	// 	}
+	// 	else {
+	// 		codeSection = '<section class="code-section">';
+	// 	}
+
+	// 	// 只对pre和code添加内联样式以确保横向滚动，不修改整体结构
+	// 	if (!lang) {
+	// 		return codeSection + '<pre style="overflow-x: auto; white-space: pre;"><code>'
+	// 			+ code
+	// 			+ '</code></pre></section>\n';
+	// 	}
+	
+	// 	return codeSection + '<pre style="overflow-x: auto; white-space: pre;"><code class="hljs language-'
+	// 		+ lang
+	// 		+ '">'
+	// 		+ code
+	// 		+ '</code></pre></section>\n';
+	// }
+
 	codeRenderer(code: string, infostring: string | undefined): string {
 		const lang = (infostring || '').match(/^\S*/)?.[0];
 
-		// 添加这段处理缩进的代码
+		// 1. 创建按钮栏的 HTML
+		const titleBar = `
+			<div class="code-title-bar">
+				<span class="code-button-red"></span>
+				<span class="code-button-yellow"></span>
+				<span class="code-button-green"></span>
+			</div>
+		`;
+
+		// 2. 处理代码缩进
 		code = code.split('\n').map(line => {
-			// 匹配行首的空格和制表符
 			return line.replace(/^(\s+)/, function(match) {
-				// 将空格转换为&nbsp;, 制表符转换为4个&nbsp;
 				return match.replace(/ /g, '&nbsp;').replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
 			});
 		}).join('\n');
-
 		code = code.replace(/\n$/, '') + '\n';
 
-		let codeSection = '';
+		// 3. 创建代码主体（包括行号和代码本身）
+		let codeBody = '';
 		if (this.settings.lineNumber) {
 			const lines = code.split('\n');
-
 			let liItems = '';
-			let count = 1;
-			while (count < lines.length) {
-				liItems = liItems + `<li>${count}</li>`;
-				count = count + 1;
+			// 确保最后一行即使是空的也计算行号
+			for (let i = 0; i < lines.length -1; i++) {
+				liItems += `<li>${i + 1}</li>`;
 			}
-			codeSection = '<section class="code-section"><ul>'
-				+ liItems
-				+ '</ul>';
+			codeBody = `<div class="code-content-wrapper"><ul class="line-numbers">${liItems}</ul><pre><code>${code}</code></pre></div>`;
 		}
 		else {
-			codeSection = '<section class="code-section">';
+			codeBody = `<div class="code-content-wrapper"><pre><code>${code}</code></pre></div>`;
 		}
 
-		// 只对pre和code添加内联样式以确保横向滚动，不修改整体结构
-		if (!lang) {
-			return codeSection + '<pre style="overflow-x: auto; white-space: pre;"><code>'
-				+ code
-				+ '</code></pre></section>\n';
+		// 4. 为代码块添加语言类
+		if (lang) {
+			codeBody = codeBody.replace('<code>', `<code class="hljs language-${lang}">`);
 		}
-	
-		return codeSection + '<pre style="overflow-x: auto; white-space: pre;"><code class="hljs language-'
-			+ lang
-			+ '">'
-			+ code
-			+ '</code></pre></section>\n';
+		
+		// 5. 将按钮栏和代码主体组合在总容器中并返回
+		return `<section class="code-section">${titleBar}${codeBody}</section>\n`;
 	}
 
 	static getMathType(lang: string | null) {

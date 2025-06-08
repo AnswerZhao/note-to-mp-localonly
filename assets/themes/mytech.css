@@ -1,15 +1,15 @@
 /* =========================================================== */
-/* MyTech 主题 - 专为科技类文章设计                             */
+/* MyTech 主题 - 原始风格 + 深色代码块 (RGB颜色最终版)         */
 /* =========================================================== */
 .note-to-mp {
     padding: 20px 20px;
     user-select: text;
     -webkit-user-select: text;
-    color: #333333;
+    color: rgb(51, 51, 51); /* #333333 */
     font-size: 16px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     line-height: 1.7;
-    background-color: #ffffff;
+    background-color: rgb(255, 255, 255); /* #ffffff */
     max-width: 860px;
     margin: 0 auto;
 }
@@ -18,272 +18,157 @@
     margin-bottom: 0;
 }
 
-.note-to-mp .fancybox-img {
-    border: none;
-}
-
-.note-to-mp .fancybox-img:hover {
-    opacity: none;
-    border: none;
-}
-
 /*
 =================================
-Heading 
+Heading (保持原始风格)
 ==================================
 */
 .note-to-mp h1 {
-    color: #2c3e50;
+    color: rgb(44, 62, 80); /* #2c3e50 */
     font-weight: 700;
     font-size: 2.2em;
     line-height: 1.3;
     margin-top: 1.5em;
     margin-bottom: 0.8em;
     padding-bottom: 0.3em;
-    border-bottom: 1px solid #eaecef;
+    border-bottom: 1px solid rgb(234, 236, 239); /* #eaecef */
 }
 
 .note-to-mp h2 {
-    color: #2c3e50;
+    color: rgb(44, 62, 80); /* #2c3e50 */
     font-weight: 600;
     font-size: 1.75em;
     line-height: 1.3;
     margin-top: 1.5em;
     margin-bottom: 0.8em;
     padding-bottom: 0.3em;
-    border-bottom: 1px solid #eaecef;
-}
-
-.note-to-mp h3 {
-    color: #2c3e50;
-    font-weight: 600;
-    font-size: 1.4em;
-    line-height: 1.4;
-    margin-top: 1.3em;
-    margin-bottom: 0.6em;
-}
-
-.note-to-mp h4 {
-    color: #2c3e50;
-    font-weight: 600;
-    font-size: 1.2em;
-    line-height: 1.4;
-    margin-top: 1.3em;
-    margin-bottom: 0.6em;
-}
-
-.note-to-mp h5 {
-    color: #2c3e50;
-    font-weight: 600;
-    font-size: 1em;
-    line-height: 1.4;
-    margin-top: 1.3em;
-    margin-bottom: 0.6em;
-}
-
-.note-to-mp h6 {
-    color: #586069;
-    font-weight: 600;
-    font-size: 0.9em;
-    line-height: 1.4;
-    margin-top: 1.3em;
-    margin-bottom: 0.6em;
+    border-bottom: 1px solid rgb(234, 236, 239); /* #eaecef */
 }
 
 /*
 =================================
-Horizontal Rules
-==================================
-*/
-.note-to-mp hr {
-    border: 0;
-    height: 1px;
-    background-color: #eaecef;
-    margin: 2em 0;
-}
-
-/*
-=================================
-Paragraphs
+Paragraphs, Links, etc. (保持原始风格)
 ==================================
 */
 .note-to-mp p {
     line-height: 1.7;
     margin: 1em 0;
-    color: #333333;
+    color: rgb(51, 51, 51); /* #333333 */
 }
 
-/*
-=================================
-Emphasis
-==================================
-*/
-.note-to-mp strong {
-    color: #24292e;
-    font-weight: 600;
+.note-to-mp a {
+    color: rgb(66, 153, 225); /* #4299e1 */
+    text-decoration: none;
+    border-bottom: 1px solid rgba(66, 153, 225, 0.3);
 }
 
-.note-to-mp em {
-    color: inherit;
-    font-style: italic;
-}
-
-.note-to-mp s {
-    color: #6a737d;
-}
-
-/*
-=================================
-Blockquotes
-==================================
-*/
 .note-to-mp blockquote {
     font-size: 1rem;
     display: block;
     margin: 1.5em 0;
     padding: 0.8em 1em;
     position: relative;
-    color: #6a737d;
-    background-color: #f6f8fa;
-    border-left: 4px solid #4299e1;
+    color: rgb(106, 115, 125); /* #6a737d */
+    background-color: rgb(246, 248, 250); /* #f6f8fa */
+    border-left: 4px solid rgb(66, 153, 225); /* #4299e1 */
     border-radius: 3px;
 }
 
-.note-to-mp blockquote p {
-    margin: 0.5em 0;
-}
-
-.note-to-mp blockquote footer strong {
-    margin-right: 0.5em;
-}
-
 /*
 =================================
-List
+代码块样式 (Code Block Style)
 ==================================
 */
-.note-to-mp ul {
-    margin: 1em 0;
-    padding-left: 2em;
-}
 
-.note-to-mp ul>li {
-    margin-top: 0.3em;
-    margin-bottom: 0.3em;
-}
-
-.note-to-mp ul>li::marker {
-    color: #4299e1;
-}
-
-.note-to-mp ol {
-    margin: 1em 0;
-    padding-left: 2em;
-}
-
-.note-to-mp ol>li {
-    margin-top: 0.3em;
-    margin-bottom: 0.3em;
-    padding-left: 0.2em;
-}
-
-.note-to-mp ol>li::marker {
-    color: #4299e1;
-}
-
-.note-to-mp li>p {
-    margin: 0.2em 0;
-}
-
-/*
-=================================
-Link
-==================================
-*/
-.note-to-mp a {
-    color: #4299e1;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(66, 153, 225, 0.3);
-    transition: all 0.2s ease-in-out;
-}
-
-.note-to-mp a:hover {
-    color: #2b6cb0;
-    border-bottom: 1px solid rgba(43, 108, 176, 0.8);
-}
-
-/*
-=================================
-Code
-==================================
-*/
-.note-to-mp code {
+/* 行内代码 (保持原始浅色风格) */
+.note-to-mp p > code {
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
     font-size: 0.9em;
-    background-color: #f6f8fa;
+    background-color: rgb(246, 248, 250); /* #f6f8fa */
     padding: 0.2em 0.4em;
     border-radius: 3px;
-    color: #476582;
+    color: rgb(71, 101, 130); /* #476582 */
+    display: inline;
 }
 
+/* 代码块总容器 */
 .note-to-mp .code-section {
-    border-radius: 5px;
+    background-color: rgb(1, 22, 39);
+    border-radius: 8px;
     margin: 1.5em 0;
     overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid #eaecef;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* 按钮栏容器 */
+.code-title-bar {
+    padding: 10px 15px;
+}
+
+/* 按钮的通用样式 */
+.code-title-bar span {
+    display: inline-block; /* 核心修改 */
+    vertical-align: middle; /* 辅助垂直对齐 */
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-left: 8px;
+}
+
+/* 三个按钮的具体颜色 */
+.code-button-red { background-color: rgb(255, 95, 86); }
+.code-button-yellow { background-color: rgb(255, 189, 46); }
+.code-button-green { background-color: rgb(39, 201, 63); }
+
+/* 代码主体内容的包裹器 */
+.code-content-wrapper {
     display: flex;
 }
 
-.note-to-mp .code-section pre {
-    margin: 0;
-    padding: 1em;
-    overflow-x: auto;
-    background-color: #f6f8fa;
-    flex: 1;
-}
-
-.note-to-mp .code-section pre code {
-    background-color: transparent;
-    padding: 0;
-    font-size: 0.9em;
-    border-radius: 0;
-    color: inherit;
-    line-height: 1.5;
-}
-
-.note-to-mp .code-section ul {
-    margin: 0;
-    padding: 1em 0;
-    border-right: 1px solid #eaecef;
-    background-color: #f6f8fa;
-    user-select: none;
-    min-width: 2.5em;
-    width: auto;
+/* 行号列表 */
+.line-numbers {
     flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
+    counter-reset: line;
+    margin: 0;
+    padding: 1em 0.8em;
+    color: rgb(92, 99, 112);
+    user-select: none;
+    text-align: right;
+    border-right: 1px solid rgb(26, 43, 60);
 }
 
-.note-to-mp .code-section ul>li {
-    list-style: none;
-    padding: 0 0.8em;
-    margin: 0;
-    line-height: 1.5;
-    font-size: 0.9em;
-    color: #999;
-    text-align: right;
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+.line-numbers > li {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    line-height: 1.75em;
+    font-size: 0.875em;
+    list-style-type: none;
     white-space: nowrap;
 }
 
-.note-to-mp .code-section ul>li::marker {
-    content: none;
+/* 代码区域滚动容器 <pre> */
+.code-content-wrapper pre {
+    margin: 0;
+    padding: 1em;
+    overflow: auto;
+    width: 100%;
+}
+
+/* 实际代码元素 <code> */
+.code-content-wrapper pre code {
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+    color: rgb(214, 222, 235);
+    background-color: transparent !important;
+    font-size: 0.9em;
+    line-height: 1.75em;
+    padding: 0;
+    white-space: pre !important;
+    word-wrap: normal !important;
+    display: block;
 }
 
 /*
 =================================
-Table
+(其他原始样式，如表格、图片等)
 ==================================
 */
 .note-to-mp table {
@@ -296,31 +181,26 @@ Table
 }
 
 .note-to-mp table thead {
-    background-color: #f6f8fa;
+    background-color: rgb(246, 248, 250); /* #f6f8fa */
 }
 
 .note-to-mp table thead th {
     padding: 0.8em 1em;
-    border: 1px solid #eaecef;
+    border: 1px solid rgb(234, 236, 239); /* #eaecef */
     text-align: left;
     font-weight: 600;
-    color: #24292e;
+    color: rgb(36, 41, 46); /* #24292e */
 }
 
 .note-to-mp table tbody tr:nth-child(even) {
-    background-color: #f9fafb;
+    background-color: rgb(249, 250, 251); /* #f9fafb */
 }
 
 .note-to-mp table tbody td {
     padding: 0.8em 1em;
-    border: 1px solid #eaecef;
+    border: 1px solid rgb(234, 236, 239); /* #eaecef */
 }
 
-/*
-=================================
-Image
-==================================
-*/
 .note-to-mp img {
     max-width: 100%;
     height: auto;
@@ -329,182 +209,3 @@ Image
     border-radius: 5px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.07);
 }
-
-/*
-=================================
-Math
-==================================
-*/
-.note-to-mp .katex {
-    font-size: 1.1em;
-}
-
-/*
-=================================
-Footnotes
-==================================
-*/
-.note-to-mp .footnotes {
-    margin-top: 2em;
-    padding-top: 1em;
-    border-top: 1px solid #eaecef;
-    font-size: 0.9em;
-    color: #6a737d;
-}
-
-.note-to-mp .footnotes hr {
-    display: none;
-}
-
-/*
-=================================
-Task Lists
-==================================
-*/
-.note-to-mp input[type="checkbox"] {
-    margin-right: 0.5em;
-    vertical-align: middle;
-}
-
-.note-to-mp .task-list-item {
-    list-style-type: none;
-    margin-left: -1.5em;
-}
-
-/*
-=================================
-Highlight
-==================================
-*/
-.note-to-mp mark {
-    background-color: #fff8c5;
-    padding: 0.2em;
-    border-radius: 2px;
-}
-
-/*
-=================================
-Code Section Specific Rules
-==================================
-*/
-/* 确保代码行与行号垂直对齐 */
-.note-to-mp .code-section > pre > code {
-    display: block;
-    line-height: 1.5;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-/* 确保行号容器有正确的宽度和对齐 */
-.note-to-mp .code-section > ul {
-    box-sizing: content-box;
-    margin-top: 0 !important;
-    margin-bottom: 0 !important;
-    height: auto !important; /* 确保高度自动适应内容 */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* 确保从顶部开始对齐 */
-}
-
-/* 确保行号文本正确对齐 */
-.note-to-mp .code-section > ul > li {
-    position: relative;
-    height: 1.5em; /* 与代码行高相同 */
-    line-height: 1.5;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-    flex-shrink: 0; /* 防止行号被压缩 */
-}
-
-/* 解决可能的溢出问题 */
-.note-to-mp .code-section {
-    max-width: 100%;
-    overflow-x: auto;
-    /* 确保行号和代码内容高度相同 */
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-}
-
-/* 确保长代码显示正确 */
-.note-to-mp .code-section > pre {
-    height: auto !important; /* 确保高度自动适应内容 */
-    margin: 0;
-    padding: 1em;
-    overflow-x: auto;
-    background-color: #f6f8fa;
-    flex: 1;
-    display: flex; /* 添加flex以确保代码块填充空间 */
-    flex-direction: column;
-}
-
-/* 确保行号与实际代码行数匹配 */
-.note-to-mp .code-section pre code {
-    white-space: pre !important; /* 保留所有空格和换行 */
-    word-wrap: normal !important; /* 防止长行被换行截断 */
-    tab-size: 4; /* 统一制表符宽度 */
-}
-
-/* 确保行号容器不会截断 */
-.note-to-mp .code-section ul {
-    padding-top: 1em;
-    padding-bottom: 1em;
-    height: 100% !important; /* 使行号列表充满整个高度 */
-    overflow-y: hidden; /* 防止垂直滚动条 */
-}
-
-/* 对代码区域进行自动计算行号的处理 */
-.note-to-mp .code-section pre.auto-line-numbers {
-    counter-reset: line;
-    position: relative;
-}
-
-.note-to-mp .code-section pre.auto-line-numbers code {
-    position: relative;
-    padding-left: 3.5em; /* 为行号预留空间 */
-}
-
-.note-to-mp .code-section pre.auto-line-numbers code > .line {
-    position: relative;
-    counter-increment: line;
-}
-
-.note-to-mp .code-section pre.auto-line-numbers code > .line::before {
-    content: counter(line);
-    position: absolute;
-    left: -3.5em;
-    width: 3em;
-    text-align: right;
-    color: #999;
-    white-space: nowrap;
-    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-    font-size: 0.9em;
-    padding-right: 0.5em;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-/* 处理行号容器样式冲突 */
-.note-to-mp .code-section.has-line-numbers > ul {
-    display: flex !important;
-    flex-direction: column !important;
-}
-
-.note-to-mp .code-section.has-line-numbers > ul > li {
-    display: block !important;
-    width: auto !important;
-    box-sizing: border-box !important;
-}
-
-/* 确保代码块和行号列高度相同 */
-.note-to-mp .code-section.has-line-numbers {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: stretch !important;
-}
-
-/* 修复行号可能缺失的问题 */
-.note-to-mp .code-section pre code span {
-    display: inline-block;
-    min-height: 1.5em;
-} 
