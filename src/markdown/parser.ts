@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-import { Marked } from "marked";
+import { Marked, Token, Tokens, TokensList } from "marked";
 import { NMPSettings } from "src/settings";
 import { App, Vault } from "obsidian";
 import AssetsManager from "../assets";
@@ -35,6 +35,7 @@ import { LocalFile, LocalImageManager } from "./local-file";
 import { MathRenderer } from "./math";
 import { TextHighlight } from "./text-highlight";
 import { cleanUrl } from "../utils";
+import { ImageGallery, ImageGalleryToken } from "./image-gallery";
 
 
 const markedOptiones = {
@@ -79,7 +80,7 @@ const customRenderer = {
 		}
 		let out = '';
 		if (NMPSettings.getInstance().useFigcaption) {
-			out = `<figure style="display: flex; flex-direction: column; align-items: center;"><img src="${href}" alt="${text}"`;
+			out = `<figure style="display: flex; flex-direction: column; align-items: center;"><img src="${href}" alt="${text}" style="max-width: 100%; height: auto; display: block;"`;
 			if (title) {
 				out += ` title="${title}"`;
 			}
@@ -91,7 +92,7 @@ const customRenderer = {
 			}
 		}
 		else {
-			out = `<img src="${href}" alt="${text}"`;
+			out = `<img src="${href}" alt="${text}" style="max-width: 100%; height: auto; display: block;"`;
 			if (title) {
 				out += ` title="${title}"`;
 			}
@@ -115,6 +116,7 @@ export class MarkedParser {
 		const assetsManager = AssetsManager.getInstance();
 
 		this.extensions.push(new LocalFile(app, settings, assetsManager, callback));
+		this.extensions.push(new ImageGallery(app, settings, assetsManager, callback));
 		this.extensions.push(new Blockquote(app, settings, assetsManager, callback));
 		this.extensions.push(new CodeHighlight(app, settings, assetsManager, callback));
 		this.extensions.push(new EmbedBlockMark(app, settings, assetsManager, callback));
@@ -133,10 +135,51 @@ export class MarkedParser {
 		for (const ext of this.extensions) {
 			this.marked.use(ext.markedExtension());
 			ext.marked = this.marked;
+			ext.extensions = this.extensions; 
 			await ext.prepare();
 		}
+		// @ts-ignore
 		this.marked.use({renderer: customRenderer});
 	}
+    
+    private processImageGalleries(tokens: TokensList): TokensList {
+        const isImageToken = (t: Token): t is Tokens.Image | Tokens.Generic => {
+            return t.type === 'image' || t.type === 'LocalImage';
+        };
+    
+        const isWhitespaceToken = (t: Token): boolean => {
+            return t.type === 'br' || (t.type === 'text' && /^\s*$/.test(t.raw));
+        };
+    
+        for (let i = 0; i < tokens.length; i++) {
+            const token = tokens[i];
+    
+            if (token.type !== 'paragraph' || !token.tokens) {
+                continue;
+            }
+    
+            const containsOnlyImagesAndWhitespace = token.tokens.every(
+                subToken => isImageToken(subToken) || isWhitespaceToken(subToken)
+            );
+    
+            if (!containsOnlyImagesAndWhitespace) {
+                continue;
+            }
+    
+            const imageTokens = token.tokens.filter(isImageToken);
+    
+            if (imageTokens.length > 1) {
+                const galleryToken: ImageGalleryToken = {
+                    type: 'image_gallery',
+                    raw: token.raw,
+                    images: imageTokens,
+                };
+                tokens[i] = galleryToken;
+            }
+        }
+    
+        return tokens;
+    }
 
 	async prepare() {
 	  this.extensions.forEach(async ext => await ext.prepare());
@@ -153,7 +196,11 @@ export class MarkedParser {
 	async parse(content: string) {
 		if (!this.marked) await this.buildMarked();
 		await this.prepare();
-		let html = await this.marked.parse(content);	
+        
+        let tokens = this.marked.lexer(content);
+        tokens = this.processImageGalleries(tokens);
+		let html = this.marked.parser(tokens);	
+        
 		html = await this.postprocess(html);
 		return html;
 	}

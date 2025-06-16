@@ -37,6 +37,7 @@ export abstract class Extension {
     settings: NMPSettings;
     callback: MDRendererCallback;
     marked: Marked;
+    extensions: Extension[];
 
     constructor(app: App, settings: NMPSettings, assetsManager: AssetsManager, callback: MDRendererCallback) {
         this.app = app;
