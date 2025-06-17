@@ -719,6 +719,108 @@ export class NotePreview extends ItemView implements MDRendererCallback {
             }
         }
         
+        // 只处理并排图片布局，不触碰代码块
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = finalContent;
+        
+        // 只查找并处理图片画廊容器
+        const galleries = tempDiv.querySelectorAll('.note-side-by-side-images, div[style*="display: flex"]');
+        
+        for (const gallery of galleries) {
+            // 检查是否在代码块内部，如果是则跳过处理
+            let parent = gallery.parentElement;
+            let isInCodeBlock = false;
+            while (parent) {
+                if (parent.tagName === 'PRE' || parent.classList.contains('code-section')) {
+                    isInCodeBlock = true;
+                    break;
+                }
+                parent = parent.parentElement;
+            }
+            
+            if (isInCodeBlock) continue; // 跳过代码块内的处理
+            
+            // 获取画廊中的所有图片容器
+            const imageContainers = gallery.querySelectorAll('div[style*="flex: 1"], .note-side-by-side-image-wrapper');
+            if (imageContainers.length <= 0) continue; // 如果没有图片容器，跳过处理
+            
+            // 创建一个包含所有表格的容器
+            const tablesContainer = document.createElement('div');
+            
+            // 计算行数，每行最多3张图片
+            const rowCount = Math.ceil(imageContainers.length / 3);
+            
+            for (let rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+                // 为每一行创建一个独立的表格
+                const table = document.createElement('table');
+                table.style.width = '100%';
+                table.style.borderCollapse = 'collapse';
+                table.style.border = 'none';
+                table.style.marginBottom = '10px';
+                table.setAttribute('cellspacing', '0');
+                table.setAttribute('cellpadding', '0');
+                
+                const tr = document.createElement('tr');
+                
+                // 计算当前行的图片范围
+                const startIdx = rowIndex * 3;
+                const endIdx = Math.min(startIdx + 3, imageContainers.length);
+                const rowImageCount = endIdx - startIdx;
+                
+                // 为每个图片创建单元格
+                for (let i = 0; i < rowImageCount; i++) {
+                    const containerIndex = startIdx + i;
+                    if (containerIndex >= imageContainers.length) break;
+                    
+                    const container = imageContainers[containerIndex];
+                    
+                    const td = document.createElement('td');
+                    const cellWidth = Math.floor(100 / rowImageCount);
+                    td.style.width = `${cellWidth}%`;
+                    td.style.padding = '0 5px';
+                    td.style.border = 'none';
+                    td.style.textAlign = 'center';
+                    td.style.verticalAlign = 'middle';
+                    
+                    // 获取图片元素
+                    const img = container.querySelector('img');
+                    if (img) {
+                        // 创建新的图片元素
+                        const newImg = document.createElement('img');
+                        newImg.src = img.src;
+                        newImg.alt = img.alt || '';
+                        
+                        // 使用更严格的样式控制
+                        newImg.style.cssText = 'width: 100%; height: auto; object-fit: contain; display: block; margin: 0 auto;';
+                        
+                        td.appendChild(newImg);
+                    }
+                    
+                    tr.appendChild(td);
+                }
+                
+                table.appendChild(tr);
+                tablesContainer.appendChild(table);
+            }
+            
+            // 替换原始画廊容器
+            gallery.parentNode?.replaceChild(tablesContainer, gallery);
+        }
+        
+        // 获取修改后的HTML
+        finalContent = tempDiv.innerHTML;
+        
+        // 添加表格和图片样式 - 使用更明确的样式
+        finalContent = `
+            <style>
+            /* 表格样式 */
+            table:not([class]) { border-collapse: collapse !important; border: none !important; width: 100% !important; margin-bottom: 10px !important; table-layout: fixed !important; }
+            table:not([class]) td { padding: 0 5px !important; border: none !important; text-align: center !important; vertical-align: middle !important; }
+            img { max-width: 100% !important; width: 100% !important; height: auto !important; object-fit: contain !important; display: block !important; margin: 0 auto !important; }
+            </style>
+            ${finalContent}
+        `;
+        
         // 写入剪贴板
         const items = {
             'text/html': new Blob([finalContent], {type: 'text/html'})
