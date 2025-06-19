@@ -60,11 +60,11 @@ const customRenderer = {
 		return `<li>${text}</li>`;
 	},
 	image(href: string, title: string | null, text: string): string {
-    const cleanHref = cleanUrl(href);
-    if (cleanHref === null) {
-      return text;
-    }
-    href = cleanHref;
+		const cleanHref = cleanUrl(href);
+		if (cleanHref === null) {
+			return text;
+		}
+		href = cleanHref;
 
 		if (!href.startsWith('http')) {
 			const res = AssetsManager.getInstance().getResourcePath(decodeURI(href));
@@ -78,28 +78,26 @@ const customRenderer = {
 				LocalImageManager.getInstance().setImage(res.resUrl, info);	
 			}
 		}
-		let out = '';
+        
+        // 为图片添加一个标记类，例如 'note-mp-styled-image'
+        let out = '';
 		if (NMPSettings.getInstance().useFigcaption) {
-			out = `<figure style="display: flex; flex-direction: column; align-items: center;"><img src="${href}" alt="${text}" style="max-width: 100%; height: auto; display: block;"`;
+			// 只生成结构，不添加复杂的 inline style
+            out = `<figure><img class="note-mp-styled-image" src="${href}" alt="${text}"`;
 			if (title) {
 				out += ` title="${title}"`;
 			}
-			if (text.length > 0) {
-				out += `><figcaption>${text}</figcaption></figure>`;
-			}
-			else {
-				out += '></figure>'
-			}
-		}
-		else {
-			out = `<img src="${href}" alt="${text}" style="max-width: 100%; height: auto; display: block;"`;
+			out += `><figcaption>${text}</figcaption></figure>`;
+		} else {
+            // 只生成结构，不添加复杂的 inline style
+			out = `<img class="note-mp-styled-image" src="${href}" alt="${text}"`;
 			if (title) {
 				out += ` title="${title}"`;
 			}
 			out += '>';
 		}
-    return out;
-  }
+		return out;
+	}
 };
 
 export class MarkedParser {
@@ -185,8 +183,28 @@ export class MarkedParser {
 	  this.extensions.forEach(async ext => await ext.prepare());
 	}
 
-	async postprocess(html: string) {
-		let result = html;
+	async postprocess(html: string): Promise<string> {
+		// 使用 DOMParser 或一个临时的 div 来安全地操作 HTML
+		const tempDiv = document.createElement('div');
+		tempDiv.innerHTML = html;
+
+		// 查找所有需要设置样式的图片
+		const images = tempDiv.querySelectorAll('img.note-mp-styled-image');
+
+		images.forEach(img => {
+			// 为图片本身添加基础样式
+			img.setAttribute('style', 'max-width: 100%; height: auto; display: block;');
+
+			// 检查它是否被 <figure> 包裹
+			const parent = img.parentElement;
+			if (parent && parent.tagName.toLowerCase() === 'figure') {
+				// 如果是，为 <figure> 元素添加 flex 布局样式
+				parent.setAttribute('style', 'display: flex; flex-direction: column; align-items: center;');
+			}
+		});
+
+        // 遍历所有扩展，执行它们各自的 postprocess
+		let result = tempDiv.innerHTML;
 		for (let ext of this.extensions) {
 			result = await ext.postprocess(result);
 		}
@@ -196,11 +214,42 @@ export class MarkedParser {
 	async parse(content: string) {
 		if (!this.marked) await this.buildMarked();
 		await this.prepare();
-        
-        let tokens = this.marked.lexer(content);
-        tokens = this.processImageGalleries(tokens);
-		let html = this.marked.parser(tokens);	
-        
+
+		// 步骤 1: Lexer - 保持不变
+		let tokens = this.marked.lexer(content);
+
+		// 步骤 2: 自定义 Token 处理 - 保持不变
+		tokens = this.processImageGalleries(tokens);
+
+		// ==================== 新增的关键修复步骤 ====================
+		// 步骤 2.5: 手动执行所有扩展的 walkTokens 钩子
+		const walkers: ((token: any) => Promise<void> | void)[] = [];
+		for (const ext of this.extensions) {
+			const markedExt = ext.markedExtension();
+			// 找到所有定义了 walkTokens 的扩展
+			if (markedExt.walkTokens) {
+				// 将 walker 函数绑定其正确的 this 上下文（即扩展实例本身）后收集起来
+				walkers.push(markedExt.walkTokens.bind(ext));
+			}
+		}
+
+		// 如果存在需要执行的 walker
+		if (walkers.length > 0) {
+			// 异步地遍历所有 token
+			for (const token of tokens) {
+				// 让每个 walker 都处理一遍当前的 token
+				for (const walker of walkers) {
+					await walker(token);
+				}
+			}
+		}
+		// ==========================================================
+
+		// 步骤 3: Parser - 现在可以安全地同步调用
+		// 因为 blockquote 等异步工作已在上面手动完成，并已将结果存入 token.html
+		let html = this.marked.parser(tokens);  
+
+		// 步骤 4: Post-process - 保持不变
 		html = await this.postprocess(html);
 		return html;
 	}
