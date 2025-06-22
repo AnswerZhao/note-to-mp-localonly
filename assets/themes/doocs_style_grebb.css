@@ -1,0 +1,388 @@
+/*
+ * Doocs Style Grebb 主题
+ * 基于 doocs_style_1.html 的样式特点设计
+ * 主色调：#009874 (绿色)
+ * =========================================================== 
+ */
+.note-to-mp {
+    padding: 1em 1em;
+    user-select: text;
+    -webkit-user-select: text;
+    color: #3f3f3f;
+    font-size: 16px;
+    font-family: -apple-system-font, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+    line-height: 1.75;
+    background-color: #ffffff;
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: left;
+    letter-spacing: 0.1em;
+}
+
+.note-to-mp:last-child {
+    margin-bottom: 0;
+}
+
+/*
+=================================
+Heading (Doocs 风格)
+==================================
+*/
+
+.note-to-mp h1 {
+    font-size: 19.2px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.75;
+    display: table;
+    padding: 0 1em;
+    border-bottom: 2px solid #009874;
+    margin: 2em auto 1em;
+    color: #3f3f3f;
+    margin-top: 0;
+}
+
+.note-to-mp h2 {
+    font-size: 19.2px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1.75;
+    display: table;
+    padding: 0 0.2em;
+    margin: 4em auto 2em;
+    color: #fff;
+    background: #009874;
+}
+
+.note-to-mp h3 {
+    font-size: 17.6px;
+    font-weight: bold;
+    text-align: left;
+    line-height: 1.2;
+    padding-left: 8px;
+    border-left: 3px solid #009874;
+    margin: 2em 8px 0.75em 0;
+    color: #3f3f3f;
+}
+
+.note-to-mp h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 1.5em 0 0.75em 0;
+    color: #3f3f3f;
+}
+
+.note-to-mp h5 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 1.5em 0 0.75em 0;
+    color: #3f3f3f;
+}
+
+.note-to-mp h6 {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 1.5em 0 0.75em 0;
+    color: #3f3f3f;
+}
+
+/*
+=================================
+Paragraphs, Links, etc.
+==================================
+*/
+.note-to-mp p {
+    text-align: left;
+    line-height: 1.75;
+    font-size: 16px;
+    margin: 1.5em 8px;
+    letter-spacing: 0.1em;
+    color: #3f3f3f;
+}
+
+.note-to-mp a {
+    color: #009874;
+    text-decoration: underline;
+}
+
+.note-to-mp a:hover {
+    color: #007a5e;
+}
+
+/*
+=================================
+Lists
+==================================
+*/
+.note-to-mp ul {
+    text-align: left;
+    line-height: 1.75;
+    font-size: 16px;
+    list-style: circle;
+    padding-left: 1em;
+    margin-left: 0;
+    color: #3f3f3f;
+}
+
+.note-to-mp ol {
+    text-align: left;
+    line-height: 1.75;
+    font-size: 16px;
+    padding-left: 1em;
+    margin-left: 0;
+    color: #3f3f3f;
+}
+
+.note-to-mp li {
+    text-align: left;
+    line-height: 1.75;
+    font-size: 16px;
+    text-indent: -1em;
+    display: block;
+    margin: 0.2em 8px;
+    color: #3f3f3f;
+}
+
+.note-to-mp li + li {
+    margin-top: 0.2em;
+}
+
+.note-to-mp ul ul,
+.note-to-mp ol ul,
+.note-to-mp ul ol,
+.note-to-mp ol ol {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/*
+=================================
+Text Formatting
+==================================
+*/
+.note-to-mp strong,
+.note-to-mp b {
+    color: #009874;
+    font-weight: bold;
+}
+
+.note-to-mp em,
+.note-to-mp i {
+    font-style: italic;
+}
+
+.note-to-mp del,
+.note-to-mp s {
+    text-decoration: line-through;
+    color: inherit;
+}
+
+/*
+=================================
+Code
+==================================
+*/
+.note-to-mp code {
+    font-size: 90%;
+    color: #d14;
+    background: rgba(27, 31, 35, 0.05);
+    padding: 3px 5px;
+    border-radius: 4px;
+    font-family: -apple-system-font, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", Arial, sans-serif;
+}
+
+.note-to-mp pre {
+    text-align: left;
+    line-height: 1.5;
+    font-size: 90%;
+    overflow-x: auto;
+    border-radius: 8px;
+    margin: 10px 8px;
+    padding: 0 !important;
+    background-color: #f6f8fa;
+}
+
+.note-to-mp pre code {
+    display: block;
+    padding: 0.5em 1em 1em;
+    overflow-x: auto;
+    text-indent: 0;
+    text-align: left;
+    line-height: 1.75;
+    font-family: Menlo, "Operator Mono", Consolas, Monaco, monospace;
+    font-size: 90%;
+    margin: 0;
+    white-space: nowrap;
+    background: transparent;
+    color: inherit;
+}
+
+/*
+=================================
+Blockquote
+==================================
+*/
+.note-to-mp blockquote {
+    margin: 1.5em 8px;
+    padding: 0.8em 1em;
+    background-color: #f6f8fa;
+    border-left: 4px solid #009874;
+    color: #3f3f3f;
+    border-radius: 3px;
+}
+
+.note-to-mp blockquote > :first-child {
+    margin-top: 0;
+}
+
+.note-to-mp blockquote > :last-child {
+    margin-bottom: 0;
+}
+
+/*
+=================================
+Tables
+==================================
+*/
+.note-to-mp table {
+    color: #3f3f3f;
+    border-collapse: collapse;
+    background-color: white;
+    border-spacing: 2px;
+    font-size: 1em;
+    margin: 1.5em 8px;
+}
+
+.note-to-mp th,
+.note-to-mp td {
+    border-color: #009874;
+    border-width: 1px;
+    border-style: solid;
+    padding: 8px 12px;
+}
+
+.note-to-mp th {
+    background-color: #009874;
+    color: white;
+    font-weight: bold;
+}
+
+.note-to-mp td {
+    font-weight: normal;
+}
+
+/*
+=================================
+Horizontal Rule
+==================================
+*/
+.note-to-mp hr {
+    border: none;
+    border-top: 2px solid #009874;
+    margin: 2em 0;
+}
+
+/*
+=================================
+Images
+==================================
+*/
+.note-to-mp img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 1em 0;
+}
+
+/*
+=================================
+Task Lists
+==================================
+*/
+.note-to-mp .task-list-item {
+    list-style-type: none;
+}
+
+.note-to-mp .task-list-item + .task-list-item {
+    margin-top: 3px;
+}
+
+.note-to-mp .task-list-item input {
+    margin: 0.3em 0 0.25em -1.6em;
+}
+
+/*
+=================================
+Code Section (for code blocks with line numbers)
+==================================
+*/
+.note-to-mp .code-section {
+    display: flex;
+    border: 1px solid #009874;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.note-to-mp .code-section pre {
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+    background-color: #f8f9fa;
+}
+
+.note-to-mp .code-section pre code {
+    font-family: Consolas, ui-monospace, SFMono-Regular, Menlo, Monaco, "Liberation Mono", "Courier New", monospace;
+    border: none;
+    font-size: 1em;
+    line-height: 1.8em;
+    padding: 1em;
+    display: block;
+    text-wrap: nowrap;
+}
+
+.note-to-mp .code-section ul {
+    flex-shrink: 0;
+    counter-reset: line;
+    margin: 0;
+    padding: 1em 0em 1em 1em;
+    white-space: normal;
+    width: fit-content;
+    background-color: #e9ecef;
+}
+
+.note-to-mp .code-section ul > li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: list-item;
+    text-align: right;
+    text-wrap: nowrap;
+    line-height: 1.8em;
+    font-size: 1em;
+    font-family: Consolas, ui-monospace, SFMono-Regular, Menlo, Monaco, "Liberation Mono", "Courier New", monospace;
+    list-style-type: none;
+    color: #009874;
+}
+
+.note-to-mp .code-section ul > li::marker {
+    content: none;
+}
+
+/*
+=================================
+Utility Classes
+==================================
+*/
+.note-to-mp * {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.note-to-mp > *:first-child {
+    margin-top: 0 !important;
+}
+
+.note-to-mp > *:last-child {
+    margin-bottom: 0 !important;
+}
